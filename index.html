@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B5CAB">
+<meta name="description" content="O básico do 1º dia do Enem, sem enrolação: redação, humanas, linguagens e estratégia de prova.">
+<title>Me Salva Enem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0B5CAB; --azul-escuro:#063A73; --azul-claro:#DCEBFA; --papel:#F3F7FC; --branco:#fff;
+  --tinta:#10233A; --suave:#50647C; --linha:#C9D9EA; --marca:#FFE14D;
+  --verde:#0E7A4B; --verde-claro:#DFF4E9; --vermelho:#BC2C27; --vermelho-claro:#FCE7E6;
+  --titulo:"Bricolage Grotesque",system-ui,sans-serif; --texto:"Atkinson Hyperlegible",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--tinta);font:17px/1.55 var(--texto);padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:var(--titulo);line-height:1.12;margin:0;letter-spacing:-.01em}
+h2{font-size:29px;color:var(--azul-escuro)}
+h3{font-size:21px;margin:28px 0 8px;color:var(--azul-escuro)}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:22px}
+li{margin-bottom:7px}
+mark{background:var(--marca);color:inherit;padding:0 3px;border-radius:2px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--marca);outline-offset:2px}
+main{max-width:640px;margin:0 auto}
+.topo{background:var(--azul);color:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
+.logo{font:800 23px/1 var(--titulo);letter-spacing:-.02em}
+.topo small{font-size:14px;opacity:.9}
+.view{display:none}.view.on{display:block}
+.cabeca{padding:22px 18px 6px}
+.cabeca p{color:var(--suave);margin:8px 0 0}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 18px;scrollbar-width:none;position:sticky;top:47px;background:var(--papel);z-index:5}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--azul);background:#fff;color:var(--azul);border-radius:30px;padding:9px 15px;font-weight:700;font-size:15.5px;cursor:pointer;min-height:42px}
+.chip[aria-selected=true]{background:var(--azul);color:#fff}
+.painel{padding:4px 18px 20px}
+.painel[hidden]{display:none}
+
+/* Capa */
+.capa{background:var(--azul);color:#fff;padding:26px 18px 30px}
+.capa h1{font-size:25px;font-weight:700}
+.relogio{font:800 clamp(58px,19vw,92px)/1 var(--titulo);margin:12px 0 10px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.capa p{margin:0;font-size:16px}
+.aviso{background:var(--marca);color:var(--tinta);padding:13px 18px;font-weight:700}
+.bloco{padding:22px 18px 4px}
+.bloco h2{font-size:25px;margin-bottom:12px}
+
+/* Lista de urgência */
+.atalho{display:flex;gap:13px;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid var(--linha);padding:14px 2px;cursor:pointer;align-items:flex-start}
+.atalho:last-child{border-bottom:0}
+.atalho b{display:block;font-size:18px;line-height:1.25}
+.atalho span.d{color:var(--suave);font-size:15.5px;line-height:1.35;display:block;margin-top:3px}
+.lista-branca{background:#fff;border-radius:6px;padding:2px 14px}
+.num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--azul);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px}
+
+/* Linha do tempo */
+.tempo{list-style:none;padding:0;margin:0;background:#fff;border-radius:6px}
+.tempo li{display:grid;grid-template-columns:104px 1fr;gap:10px;padding:12px 14px;margin:0;border-bottom:1px solid var(--linha)}
+.tempo li:last-child{border:0}
+.tempo time{font-weight:700;color:var(--azul);font-size:15.5px}
+.tempo small{display:block;color:var(--suave);font-size:15px;line-height:1.35}
+
+/* Bolinhas do gabarito */
+.oval{display:inline-grid;place-items:center;width:30px;height:21px;border:1.6px solid currentColor;border-radius:50%;font-size:12.5px;font-weight:700;flex:none;line-height:1}
+.check{display:flex;align-items:center;gap:13px;padding:13px 2px;border-bottom:1px solid var(--linha);cursor:pointer;line-height:1.3}
+.check:last-child{border:0}
+.check input{position:absolute;opacity:0;width:0;height:0}
+.check .oval{color:var(--azul)}
+.check input:checked+.oval{background:var(--tinta);border-color:var(--tinta);color:var(--tinta)}
+.check input:focus-visible+.oval{outline:3px solid var(--marca);outline-offset:2px}
+.check input:checked~span:last-child{color:var(--suave);text-decoration:line-through}
+
+/* Navegação em forma de gabarito */
+nav.gab{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--azul);display:flex;justify-content:center;padding:8px 2px calc(8px + env(safe-area-inset-bottom));z-index:20}
+nav.gab button{flex:1;max-width:128px;background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--azul);padding:3px 0;font-size:13px;font-weight:700}
+nav.gab .oval{width:40px;height:26px;font-size:14px}
+nav.gab button[aria-current=page] .oval{background:var(--azul-escuro);border-color:var(--azul-escuro);color:#fff}
+nav.gab button[aria-current=page]{color:var(--azul-escuro)}
+
+/* Acordeão */
+details.ac{background:#fff;border-radius:6px;margin-bottom:8px}
+details.ac summary{list-style:none;cursor:pointer;padding:14px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;line-height:1.25}
+details.ac summary::-webkit-details-marker{display:none}
+details.ac summary .oval{color:var(--azul);width:26px;height:18px}
+details.ac[open] summary .oval{background:var(--azul);border-color:var(--azul)}
+details.ac>div{padding:0 14px 8px}
+.freq{display:block;font-size:14.5px;font-weight:400;color:var(--suave);margin-top:2px}
+
+/* Caixas */
+.caixa{padding:13px 14px;border-radius:6px;margin:12px 0;background:var(--azul-claro)}
+.caixa.ruim{background:var(--vermelho-claro)}
+.caixa.bom{background:var(--verde-claro)}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa strong:first-child{display:block;margin-bottom:3px}
+.pista{border-left:4px solid var(--azul);padding-left:12px;margin:12px 0}
+
+/* Folha de redação */
+.folha{background:#fff;border-radius:4px;border:1px solid var(--linha);margin:12px 0;padding:14px 14px 14px 42px;position:relative;
+ background-image:linear-gradient(to right,transparent 31px,#E36A65 31px,#E36A65 32px,transparent 32px);line-height:1.62;font-size:16.5px}
+.par{margin-bottom:15px;position:relative}
+.par:last-child{margin-bottom:0}
+.par h4{margin:0 0 3px;font:700 15px/1.3 var(--texto);color:var(--azul)}
+.par .linhas{position:absolute;left:-40px;top:1px;width:28px;text-align:center;font-size:12px;font-weight:700;color:var(--suave);line-height:1.15}
+.par p{margin:0}
+.lacuna{background:var(--marca);padding:0 3px;border-radius:2px;font-style:italic}
+
+/* Conectivos */
+table{border-collapse:collapse;width:100%;background:#fff;border-radius:6px;overflow:hidden;font-size:16px;margin:10px 0 14px}
+th,td{text-align:left;padding:10px 11px;border-bottom:1px solid var(--linha);vertical-align:top;line-height:1.35}
+th{background:var(--azul);color:#fff;font-size:15px}
+tr:last-child td{border-bottom:0}
+.cerrado td:first-child{font-weight:700;width:38%}
+
+/* Campos */
+label.campo{display:block;margin-bottom:13px;font-weight:700;font-size:16px;line-height:1.3}
+label.campo small{display:block;font-weight:400;color:var(--suave);font-size:14.5px;margin-top:2px}
+.campo input,.campo select{width:100%;margin-top:5px;padding:12px;border:1.5px solid var(--linha);border-radius:6px;background:#fff;font-weight:400;font-size:16.5px;min-height:48px}
+
+/* Treino */
+.q{background:#fff;border-radius:6px;padding:15px 14px;margin-bottom:12px}
+.q .area{color:var(--azul);font-weight:700;font-size:15px;margin-bottom:4px}
+.q .alt{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--linha);padding:12px 0;cursor:pointer;line-height:1.32}
+.q .alt .oval{color:var(--azul);margin-top:1px}
+.q .alt.certa .oval{background:var(--verde);border-color:var(--verde);color:#fff}
+.q .alt.errada .oval{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+.q .alt:disabled{cursor:default;color:var(--tinta)}
+.placar{position:sticky;top:47px;background:var(--azul-escuro);color:#fff;padding:9px 18px;font-weight:700;z-index:4}
+.botao{display:block;width:100%;padding:14px;background:var(--azul);color:#fff;border:0;border-radius:6px;font-weight:700;cursor:pointer;margin-top:8px}
+.rodape{padding:18px;color:var(--suave);font-size:14.5px;line-height:1.4}
+@media (prefers-reduced-motion:no-preference){.view.on{animation:ent .16s ease-out}@keyframes ent{from{opacity:.4}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="logo">Me Salva</div><small>Enem, 1º dia</small></header>
+
+<main>
+
+<!-- HOJE -->
+<section class="view on" id="hoje">
+  <div class="capa">
+    <h1 id="capaTit">Os portões fecham em</h1>
+    <div class="relogio" id="relogio" aria-live="off">--:--:--</div>
+    <p id="capaSub">13h no horário de Brasília. Se seu estado tem outro fuso, faça a conta.</p>
+  </div>
+  <div class="aviso" id="avisoCel">Na sala o celular fica desligado. O que você precisa, leia antes de entrar.</div>
+
+  <div class="bloco">
+    <h2>Só tem 10 minutos? Veja isto</h2>
+    <div class="lista-branca">
+      <button class="atalho" data-go="redacao:esqueleto"><span class="num">1</span><span><b>Decore o esqueleto da redação</b><span class="d">4 parágrafos, cada um com uma função. É o que mais rende ponto hoje.</span></span></button>
+      <button class="atalho" data-go="redacao:proposta"><span class="num">2</span><span><b>Feche com os 5 itens da proposta</b><span class="d">Quem, faz o quê, como, para quê, e um detalhe. Vale até 200 pontos.</span></span></button>
+      <button class="atalho" data-go="redacao:zera"><span class="num">3</span><span><b>Saiba o que zera</b><span class="d">Fugir do tema e escrever até 7 linhas estão na lista.</span></span></button>
+      <button class="atalho" data-go="redacao:conectivos"><span class="num">4</span><span><b>Guarde 6 conectivos</b><span class="d">Um por parágrafo e um dentro de cada frase longa já organiza o texto.</span></span></button>
+      <button class="atalho" data-go="humanas:metodo"><span class="num">5</span><span><b>Aprenda a resolver sem saber tudo</b><span class="d">Ler o comando primeiro e eliminar alternativas extremas salva muita questão.</span></span></button>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <h2>Como dividir as 5h30</h2>
+    <ol class="tempo">
+      <li><time>13h30 às 14h40</time><div><b>Redação</b><small>Passe a limpo antes de sair desse bloco. O rascunho não vale nota.</small></div></li>
+      <li><time>14h40 às 16h20</time><div><b>Linguagens</b><small>45 questões, pouco mais de 2 minutos cada.</small></div></li>
+      <li><time>16h20 às 18h20</time><div><b>Humanas</b><small>45 questões. Travou por 3 minutos? Marque e pule.</small></div></li>
+      <li><time>18h20 às 18h50</time><div><b>Gabarito e chutes</b><small>Nada em branco. Errar não desconta ponto.</small></div></li>
+      <li><time>18h50 às 19h</time><div><b>Folga para imprevisto</b><small>Confira se marcou tudo com caneta preta.</small></div></li>
+    </ol>
+    <p style="margin-top:10px;color:var(--suave);font-size:15.5px">Prefere começar por outra prova? Pode. O importante é respeitar o limite de cada bloco.</p>
+  </div>
+
+  <div class="bloco">
+    <h2>Chute com critério</h2>
+    <ul>
+      <li><mark>Nunca deixe em branco.</mark> Resposta errada não tira ponto.</li>
+      <li>Faça primeiro as que parecem fáceis. Na correção do Enem (a TRI), errar fácil e acertar difícil parece sorte e rende menos.</li>
+      <li>Elimine alternativas com <b>sempre, nunca, totalmente, apenas</b>. Costumam ser exageradas.</li>
+      <li>Desconfie da alternativa preconceituosa ou que culpa uma pessoa por um problema social.</li>
+      <li>Sobrou tempo só para chutar? Chute as mais difíceis, depois de eliminar o que der.</li>
+    </ul>
+  </div>
+
+  <div class="bloco">
+    <h2>Antes de sair de casa</h2>
+    <div class="lista-branca" id="malinha"></div>
+    <div class="caixa ruim" style="margin-top:12px"><strong>Regras que eliminam</strong>
+      <ul>
+        <li>Celular, relógio ou objeto proibido fora do envelope.</li>
+        <li>Aparelho que faça som, mesmo dentro do envelope.</li>
+        <li>Sair da sala sem o fiscal, inclusive para ir ao banheiro.</li>
+        <li>Sair da sala antes de 2 horas de prova.</li>
+        <li>Chegar depois das 13h (Brasília): não entra.</li>
+      </ul>
+      <p>O caderno de questões só pode ser levado nos últimos 30 minutos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REDAÇÃO -->
+<section class="view" id="redacao">
+  <div class="cabeca"><h2>Redação</h2><p>Vale até 1000 pontos. Com um bom esqueleto, dá para sair do zero mesmo sem ter treinado.</p></div>
+  <div class="chips" role="tablist" data-grupo="redacao"></div>
+  <div data-paineis="redacao"></div>
+</section>
+
+<!-- HUMANAS -->
+<section class="view" id="humanas">
+  <div class="cabeca"><h2>Ciências Humanas</h2><p>45 questões. Toque no assunto para abrir. Os mais cobrados vêm primeiro.</p></div>
+  <div class="chips" role="tablist" data-grupo="humanas"></div>
+  <div data-paineis="humanas"></div>
+</section>
+
+<!-- LINGUAGENS -->
+<section class="view" id="linguagens">
+  <div class="cabeca"><h2>Linguagens</h2><p>45 questões, 5 delas de inglês ou espanhol. A maior parte é leitura, sem decoreba de gramática.</p></div>
+  <div class="chips" role="tablist" data-grupo="linguagens"></div>
+  <div data-paineis="linguagens"></div>
+</section>
+
+<!-- TREINO -->
+<section class="view" id="treino">
+  <div class="cabeca"><h2>Treino rápido</h2><p>8 questões criadas para revisar o básico. Toque em uma alternativa e veja a explicação.</p></div>
+  <div class="placar" id="placar">0 de 8 respondidas</div>
+  <div class="painel" id="quiz" style="padding-top:14px"></div>
+</section>
+
+<footer class="rodape">Projeto independente de estudo, sem vínculo com o Inep ou o MEC. Confirme regras e horários no edital e no seu Cartão de Confirmação.</footer>
+</main>
+
+<nav class="gab" aria-label="Seções">
+  <button data-v="hoje" aria-current="page"><span class="oval">A</span>Hoje</button>
+  <button data-v="redacao"><span class="oval">B</span>Redação</button>
+  <button data-v="humanas"><span class="oval">C</span>Humanas</button>
+  <button data-v="linguagens"><span class="oval">D</span>Linguagens</button>
+  <button data-v="treino"><span class="oval">E</span>Treino</button>
+</nav>
+
+<script>
+/* Componentes */
+const ac=(t,c,f)=>`<details class="ac"><summary><span class="oval" aria-hidden="true"></span><span>${t}${f?`<span class="freq">${f}</span>`:''}</span></summary><div>${c}</div></details>`;
+const pista=t=>`<div class="pista">${t}</div>`;
+const par=(tit,lin,txt)=>`<div class="par"><span class="linhas">${lin}</span><h4>${tit}</h4><p>${txt}</p></div>`;
+
+const CONTEUDO={
+redacao:[
+{id:'esqueleto',l:'Esqueleto',h:`
+<p>São <mark>4 parágrafos</mark>, de 25 a 30 linhas no total. O limite é 30. Use a mesma ordem sempre.</p>
+<div class="folha">
+${par('Introdução','1 a 6','<b>Referência</b> (lei, autor, fato) + <b>o problema do tema</b> + <b>as 2 causas</b> que você vai discutir.')}
+${par('Desenvolvimento 1','7 a 14','<b>Causa 1</b> + <b>por que isso acontece</b> + <b>exemplo</b> + <b>consequência</b>.')}
+${par('Desenvolvimento 2','15 a 22','<b>Causa 2</b> + <b>por que isso acontece</b> + <b>exemplo</b> + <b>consequência</b>.')}
+${par('Conclusão','23 a 30','<b>Retome o problema</b> + <b>proposta com os 5 itens</b>.')}
+</div>
+<h3>Frases para preencher</h3>
+<div class="folha">
+${par('Introdução','1 a 6','A Constituição Federal de 1988 garante <span class="lacuna">[direito ligado ao tema]</span> a todos os cidadãos. No entanto, na prática, <span class="lacuna">[problema do tema]</span> mostra que essa garantia não alcança toda a população. Esse cenário se mantém por dois motivos principais: <span class="lacuna">[causa 1]</span> e <span class="lacuna">[causa 2]</span>.')}
+${par('Desenvolvimento 1','7 a 14','Em primeira análise, é preciso destacar <span class="lacuna">[causa 1]</span>. Isso ocorre porque <span class="lacuna">[explique]</span>. Um exemplo disso é <span class="lacuna">[fato ou dado]</span>. Como consequência, <span class="lacuna">[o que isso causa nas pessoas]</span>.')}
+${par('Desenvolvimento 2','15 a 22','Além disso, <span class="lacuna">[causa 2]</span> agrava esse quadro, uma vez que <span class="lacuna">[explique]</span>. Nesse sentido, <span class="lacuna">[exemplo]</span>. Dessa forma, <span class="lacuna">[consequência]</span>.')}
+${par('Conclusão','23 a 30','Portanto, medidas são necessárias para enfrentar <span class="lacuna">[problema]</span>. Para isso, <span class="lacuna">[quem]</span> deve <span class="lacuna">[fazer o quê]</span>, por meio de <span class="lacuna">[como]</span>, a fim de <span class="lacuna">[para quê]</span>. Essa ação deve <span class="lacuna">[detalhe]</span>.')}
+</div>
+<div class="caixa"><strong>Atenção</strong><p>O modelo é só o trilho. Cada lacuna precisa falar do tema de hoje. Frase que serviria para qualquer tema perde ponto.</p></div>
+<h3>Exemplo completo</h3>
+<p style="color:var(--suave)">Tema inventado para treino: inclusão digital de idosos no Brasil.</p>
+<div class="folha">
+${par('Introdução','1 a 6','O Estatuto da Pessoa Idosa assegura a esse grupo o direito à educação, à cultura e à participação social. No entanto, a dificuldade de muitos idosos para usar serviços digitais mostra que essa garantia ainda não se concretizou no Brasil. Esse cenário se mantém, principalmente, devido à digitalização acelerada dos serviços e à falta de formação voltada a esse público.')}
+${par('Desenvolvimento 1','7 a 14','Em primeira análise, é preciso destacar a rapidez com que serviços essenciais migraram para aplicativos. Isso ocorre porque bancos e órgãos públicos reduzem o atendimento presencial sem considerar quem não domina essas ferramentas. Um exemplo disso é o idoso que depende de parentes para consultar a própria aposentadoria. Como consequência, ele perde autonomia e fica mais exposto a golpes virtuais.')}
+${par('Desenvolvimento 2','15 a 22','Além disso, a escassez de cursos pensados para idosos agrava esse quadro, uma vez que a maioria dos programas de tecnologia tem como foco jovens e trabalhadores. Nesse sentido, quem não cresceu com a internet costuma ser tratado como incapaz de aprender, e não como alguém que precisa de outro método. Dessa forma, a exclusão se transforma em isolamento social.')}
+${par('Conclusão','23 a 30','Portanto, medidas são necessárias para enfrentar a exclusão digital dos idosos. Para isso, o Ministério da Educação, em parceria com as prefeituras, deve criar oficinas gratuitas de tecnologia, por meio de turmas em centros de convivência e escolas públicas, a fim de garantir autonomia a essa população. Essas aulas devem ensinar, com monitores capacitados, o uso seguro de aplicativos bancários e de saúde.')}
+</div>`},
+{id:'monte',l:'Monte a sua',h:`
+<p>Preencha com ideias simples. O texto se monta abaixo para você treinar ou copiar à mão.</p>
+<label class="campo">Tema<small>Ex.: a evasão escolar no Brasil</small><input data-m="tema" autocomplete="off"></label>
+<label class="campo">Abertura<select data-m="rep">
+<option>A Constituição Federal de 1988 assegura, em seu artigo 6º, direitos sociais como educação, saúde e trabalho a todos os brasileiros.</option>
+<option>A Constituição Federal de 1988 estabelece, em seu artigo 5º, que todos são iguais perante a lei.</option>
+<option>O geógrafo Milton Santos usou a expressão “cidadania mutilada” para falar de brasileiros cujos direitos não se realizam por inteiro.</option>
+<option>O educador Paulo Freire defendia a educação como caminho para formar cidadãos críticos e transformar a sociedade.</option>
+<option>O sociólogo Zygmunt Bauman descreveu a sociedade atual como líquida, marcada por vínculos frágeis e passageiros.</option>
+<option>A filósofa Hannah Arendt usou a expressão “banalidade do mal” para explicar como injustiças podem ser tratadas como algo comum.</option>
+</select></label>
+<label class="campo">Causa 1<small>Ex.: a falta de investimento público</small><input data-m="c1" autocomplete="off"></label>
+<label class="campo">Por que a causa 1 acontece?<small>Ex.: muitas escolas não têm estrutura para receber os alunos</small><input data-m="e1" autocomplete="off"></label>
+<label class="campo">O que a causa 1 provoca?<small>Ex.: jovens abandonam os estudos</small><input data-m="r1" autocomplete="off"></label>
+<label class="campo">Causa 2<small>Ex.: a necessidade de trabalhar cedo</small><input data-m="c2" autocomplete="off"></label>
+<label class="campo">Por que a causa 2 acontece?<small>Ex.: muitas famílias dependem da renda dos filhos</small><input data-m="e2" autocomplete="off"></label>
+<label class="campo">O que a causa 2 provoca?<small>Ex.: o ciclo de pobreza se mantém</small><input data-m="r2" autocomplete="off"></label>
+<label class="campo">Quem vai resolver?<small>Ex.: o Ministério da Educação</small><input data-m="ag" autocomplete="off"></label>
+<label class="campo">Fazer o quê?<small>Ex.: ampliar as bolsas de permanência</small><input data-m="ac" autocomplete="off"></label>
+<label class="campo">Como?<small>Ex.: repasses mensais às famílias de baixa renda</small><input data-m="me" autocomplete="off"></label>
+<label class="campo">Para quê?<small>Ex.: manter os jovens na escola</small><input data-m="fi" autocomplete="off"></label>
+<label class="campo">Detalhe de um dos itens<small>Ex.: priorizar regiões com mais evasão</small><input data-m="de" autocomplete="off"></label>
+<h3>Sua redação</h3>
+<div class="folha" id="saida"></div>
+<div class="caixa"><strong>Depois de montar</strong><p>Leia em voz alta, troque repetições e confira se cada frase fala do tema.</p></div>`},
+{id:'competencias',l:'Competências',h:`
+<p>Dois corretores dão de 0 a 200 em cada competência. Sua nota é a média deles.</p>
+${ac('C1: escrever na norma formal',`<p><b>O corretor quer:</b> português formal, com poucos erros.</p><div class="caixa bom"><strong>Faça</strong><p>Frases curtas, em ordem direta. Frase curta erra menos.</p></div><div class="caixa ruim"><strong>Evite</strong><p>Gíria, abreviação, “a gente”, “tipo”, “né” e vírgula entre sujeito e verbo.</p></div>`,'Até 200 pontos')}
+${ac('C2: entender o tema e dissertar',`<p><b>O corretor quer:</b> o tema completo, um texto que defende uma ideia e repertório que ajude a provar o ponto.</p><div class="caixa bom"><strong>Faça</strong><p>Sublinhe as palavras do tema e repita as principais na introdução e na conclusão.</p></div><div class="caixa ruim"><strong>Evite</strong><p>Falar só do assunto geral. Se o tema pede idosos e internet, não basta falar de internet.</p></div>`,'Até 200 pontos')}
+${ac('C3: organizar os argumentos',`<p><b>O corretor quer:</b> uma opinião clara e argumentos que caminham até ela.</p><div class="caixa bom"><strong>Faça</strong><p>Use em cada parágrafo a ordem: causa, explicação, exemplo, consequência.</p></div><div class="caixa ruim"><strong>Evite</strong><p>Listar fatos sem dizer o que eles provam.</p></div>`,'Até 200 pontos')}
+${ac('C4: ligar as ideias',`<p><b>O corretor quer:</b> conectivos variados e corretos, sem repetir palavras.</p><div class="caixa bom"><strong>Faça</strong><p>Conectivo no começo de cada parágrafo e dentro dos parágrafos. Troque palavras repetidas por sinônimos.</p></div><div class="caixa ruim"><strong>Evite</strong><p>Usar “onde” para algo que não é lugar, repetir “e” ou escrever “portanto” sem ser conclusão.</p></div>`,'Até 200 pontos')}
+${ac('C5: propor uma solução',`<p><b>O corretor quer:</b> proposta ligada ao tema, que respeite os direitos humanos, com 5 itens.</p><div class="caixa bom"><strong>Faça</strong><p>Escreva agente, ação, meio, finalidade e detalhamento. Confira um por um.</p></div><div class="caixa ruim"><strong>Evite</strong><p>“A sociedade precisa se conscientizar.” Não diz quem faz, nem como.</p></div>`,'Até 200 pontos')}`},
+{id:'conectivos',l:'Conectivos',h:`
+<h3 style="margin-top:0">Só decore estes 6</h3>
+<table class="cerrado"><thead><tr><th>Onde</th><th>Use</th></tr></thead><tbody>
+<tr><td>Introdução, virada</td><td>No entanto,</td></tr>
+<tr><td>Introdução, causas</td><td>por dois motivos principais:</td></tr>
+<tr><td>Início do D1</td><td>Em primeira análise,</td></tr>
+<tr><td>Início do D2</td><td>Além disso,</td></tr>
+<tr><td>Explicar</td><td>uma vez que</td></tr>
+<tr><td>Início da conclusão</td><td>Portanto,</td></tr>
+</tbody></table>
+<h3>Para variar</h3>
+<table class="cerrado"><thead><tr><th>Quero…</th><th>Use</th></tr></thead><tbody>
+<tr><td>Somar ideia</td><td>além disso, ademais, também, somado a isso</td></tr>
+<tr><td>Contrariar</td><td>no entanto, porém, contudo, todavia, embora*</td></tr>
+<tr><td>Explicar a causa</td><td>porque, visto que, uma vez que, já que</td></tr>
+<tr><td>Mostrar efeito</td><td>por isso, como consequência, dessa forma</td></tr>
+<tr><td>Dar exemplo</td><td>por exemplo, como, a exemplo de</td></tr>
+<tr><td>Dizer a finalidade</td><td>a fim de, para, com o objetivo de</td></tr>
+<tr><td>Concluir</td><td>portanto, logo, assim, diante disso</td></tr>
+</tbody></table>
+<p style="color:var(--suave);font-size:15.5px">*Depois de “embora”, o verbo muda: “embora <b>exista</b>”, e não “embora existe”.</p>
+<div class="caixa ruim"><strong>Pegadinha</strong><p>“Onde” só para lugar físico. Para o resto, use “em que” ou “na qual”.</p></div>`},
+{id:'repertorio',l:'Repertório',h:`
+<p>Repertório é uma referência de fora do texto. Escolha uma e <mark>explique a relação com o tema</mark>. Citar por citar quase não ajuda.</p>
+<table class="cerrado"><thead><tr><th>Tema</th><th>Pode citar</th></tr></thead><tbody>
+<tr><td>Qualquer direito</td><td>Constituição de 1988, artigos 5º e 6º</td></tr>
+<tr><td>Educação</td><td>Constituição, art. 205; Paulo Freire</td></tr>
+<tr><td>Saúde</td><td>Constituição, art. 196; SUS</td></tr>
+<tr><td>Cultura</td><td>Constituição, art. 215</td></tr>
+<tr><td>Meio ambiente</td><td>Constituição, art. 225; Agenda 2030 da ONU</td></tr>
+<tr><td>Povos indígenas</td><td>Constituição, art. 231</td></tr>
+<tr><td>Racismo</td><td>Lei 10.639/2003 (história afro nas escolas); abolição sem integração em 1888</td></tr>
+<tr><td>Mulheres</td><td>Lei Maria da Penha (2006); Simone de Beauvoir</td></tr>
+<tr><td>Idosos</td><td>Estatuto da Pessoa Idosa (2003)</td></tr>
+<tr><td>Crianças e jovens</td><td>ECA (1990)</td></tr>
+<tr><td>Pessoas com deficiência</td><td>Lei Brasileira de Inclusão (2015)</td></tr>
+<tr><td>Internet</td><td>Marco Civil da Internet (2014); LGPD (2018); Bauman</td></tr>
+<tr><td>Desigualdade</td><td>Milton Santos, “cidadania mutilada”</td></tr>
+<tr><td>Injustiça normalizada</td><td>Hannah Arendt, “banalidade do mal”</td></tr>
+</tbody></table>
+<h3>Temas dos últimos anos</h3>
+<ul>
+<li><b>2025:</b> envelhecimento na sociedade brasileira</li>
+<li><b>2024:</b> herança africana no Brasil</li>
+<li><b>2023:</b> trabalho de cuidado feito pela mulher</li>
+<li><b>2022:</b> comunidades e povos tradicionais</li>
+<li><b>2021:</b> registro civil e cidadania</li>
+<li><b>2020:</b> estigma das doenças mentais</li>
+<li><b>2019:</b> acesso ao cinema</li>
+</ul>
+<div class="caixa"><strong>O padrão</strong><p>Quase sempre é um problema social brasileiro, muitas vezes sobre um grupo pouco visto. Leia os textos motivadores, mas não copie.</p></div>`},
+{id:'proposta',l:'Proposta',h:`
+<p>A conclusão vale muito e é a parte mais fácil de decorar. Precisa ter:</p>
+<table class="cerrado"><thead><tr><th>Item</th><th>Exemplo</th></tr></thead><tbody>
+<tr><td>Agente<br>(quem?)</td><td>O Ministério da Saúde</td></tr>
+<tr><td>Ação<br>(o quê?)</td><td>deve ampliar o atendimento psicológico</td></tr>
+<tr><td>Meio<br>(como?)</td><td>por meio de equipes nas unidades básicas</td></tr>
+<tr><td>Finalidade<br>(para quê?)</td><td>a fim de reduzir o estigma das doenças mentais.</td></tr>
+<tr><td>Detalhe<br>(mais uma informação)</td><td>Essas equipes devem contar com psicólogos concursados.</td></tr>
+</tbody></table>
+<h3>Quem pode resolver?</h3>
+<table class="cerrado"><thead><tr><th>Tema</th><th>Agente</th></tr></thead><tbody>
+<tr><td>Educação</td><td>Ministério da Educação, escolas</td></tr>
+<tr><td>Saúde</td><td>Ministério da Saúde</td></tr>
+<tr><td>Meio ambiente</td><td>Ministério do Meio Ambiente</td></tr>
+<tr><td>Cultura</td><td>Ministério da Cultura</td></tr>
+<tr><td>Grupos vulneráveis</td><td>Ministério dos Direitos Humanos</td></tr>
+<tr><td>Informação</td><td>Mídia, redes sociais</td></tr>
+<tr><td>Cidades</td><td>Prefeituras</td></tr>
+</tbody></table>
+<div class="caixa ruim"><strong>Cuidado</strong><p>Pena de morte, tortura, linchamento ou tirar direitos de um grupo derrubam sua nota na C5. Proponha soluções que protejam as pessoas.</p></div>`},
+{id:'zera',l:'O que zera',h:`
+<div class="caixa ruim"><strong>Nota zero na redação</strong><ul>
+<li>Fugir totalmente do tema</li>
+<li>Não escrever texto dissertativo-argumentativo (poema, narração ou carta, por exemplo)</li>
+<li>Escrever até 7 linhas</li>
+<li>Deixar em branco</li>
+<li>Colocar parte de propósito sem relação com o tema: desenho, piada, oração, hino, recado</li>
+<li>Assinar ou colocar marca que identifique você</li>
+<li>Copiar os textos motivadores até sobrar 7 linhas ou menos de texto próprio</li>
+</ul></div>
+<h3>Nos 2 minutos finais</h3>
+<ul>
+<li>Passei a limpo com caneta preta?</li>
+<li>Escrevi na folha certa, sem assinar?</li>
+<li>Tenho os 5 itens da proposta?</li>
+<li>Usei as palavras do tema?</li>
+</ul>
+<div class="caixa"><strong>Sem ideia nenhuma?</strong><p>Escreva mesmo assim. Texto simples, dentro do tema e com mais de 7 linhas sempre pode pontuar.</p></div>`},
+{id:'erros',l:'Erros comuns',h:`
+<table class="cerrado"><thead><tr><th>Evite</th><th>Escreva</th></tr></thead><tbody>
+<tr><td>a gente vê</td><td>observa-se / nós vemos</td></tr>
+<tr><td>hoje em dia</td><td>atualmente</td></tr>
+<tr><td>mais (oposição)</td><td>mas</td></tr>
+<tr><td>mau uso / mal uso</td><td>mau uso (contrário de bom)</td></tr>
+<tr><td>fazem dez anos</td><td>faz dez anos</td></tr>
+<tr><td>a muitos anos</td><td>há muitos anos</td></tr>
+<tr><td>as pessoas, tem</td><td>as pessoas têm</td></tr>
+<tr><td>eu acho que</td><td>é possível notar que</td></tr>
+<tr><td>etc.</td><td>complete a lista ou corte</td></tr>
+</tbody></table>
+<div class="caixa"><strong>Regra da crase para hoje</strong><p>Troque a palavra feminina por uma masculina. Se virar “ao”, tem crase: “vou à escola” vira “vou ao colégio”.</p></div>
+<div class="caixa"><strong>Regra da vírgula para hoje</strong><p>Não separe quem faz da ação. Errado: “O governo, deve agir”. Certo: “O governo deve agir”.</p></div>`}
+],
+
+humanas:[
+{id:'metodo',l:'Como resolver',h:`
+<ol>
+<li><b>Leia o comando primeiro.</b> É a pergunta logo antes das alternativas.</li>
+<li><b>Volte ao texto procurando só aquilo.</b> Muitas respostas estão nele.</li>
+<li><b>Marque autor, data e lugar.</b> A fonte do texto dá pistas.</li>
+<li><b>Elimine o extremo.</b> “Sempre”, “nunca” e “apenas” costumam estar errados.</li>
+<li><b>Travou 3 minutos? Pule.</b> Volte no final.</li>
+</ol>
+<div class="caixa"><strong>O jeito do Enem pensar</strong><p>A prova valoriza direitos humanos, diversidade, democracia, meio ambiente e a visão de grupos oprimidos. Em dúvida, prefira a alternativa alinhada a isso e que explique o problema pela sociedade, e não pela culpa individual.</p></div>
+<h3>Palavras para reconhecer</h3>
+<table class="cerrado"><tbody>
+<tr><td>Coronel, voto de cabresto</td><td>República Velha</td></tr>
+<tr><td>AI-5, censura</td><td>Ditadura militar</td></tr>
+<tr><td>Contrato social</td><td>Hobbes, Locke, Rousseau</td></tr>
+<tr><td>Mais-valia, alienação</td><td>Marx</td></tr>
+<tr><td>Segregação socioespacial</td><td>Urbanização</td></tr>
+<tr><td>Concentração fundiária</td><td>Questão agrária</td></tr>
+</tbody></table>`},
+{id:'historia',l:'História',h:`
+<p>Metade das questões de História costuma ser sobre o Brasil.</p>
+${ac('Brasil Colônia',`<p>Economia voltada para fora: a metrópole explorava e a colônia exportava.</p><ul><li><b>Plantation:</b> latifúndio, monocultura, trabalho escravizado e exportação.</li><li><b>Resistência:</b> quilombos, como Palmares, e lutas indígenas.</li><li><b>Mineração:</b> no século XVIII, mudou o eixo econômico para o Sudeste.</li></ul>${pista('Se aparecer africano ou indígena, pense neles como sujeitos que resistiam, e não só como vítimas.')}`,'Muito cobrado')}
+${ac('Brasil Império',`<ul><li><b>1822:</b> independência, mantendo monarquia e escravidão.</li><li><b>1824:</b> Constituição com o Poder Moderador, do imperador.</li><li><b>1850:</b> Lei de Terras torna a terra uma mercadoria comprada, o que excluiu os mais pobres.</li><li><b>1888:</b> Lei Áurea. A abolição veio sem terra, escola ou trabalho para os libertos.</li></ul>${pista('Racismo e desigualdade de hoje costumam ser ligados a essa abolição sem integração.')}`,'Muito cobrado')}
+${ac('República Velha (1889 a 1930)',`<ul><li><b>Coronelismo:</b> chefes locais controlavam o voto.</li><li><b>Voto de cabresto:</b> voto aberto e sob pressão.</li><li><b>Política do café com leite:</b> acordo entre as elites de SP e MG.</li><li><b>Revoltas:</b> Canudos, Contestado, Vacina, Chibata.</li></ul>`,'Muito cobrado')}
+${ac('Era Vargas (1930 a 1945)',`<ul><li><b>1932:</b> voto feminino.</li><li><b>1937:</b> Estado Novo, ditadura com censura e propaganda (DIP).</li><li><b>1943:</b> CLT, leis trabalhistas.</li><li><b>Populismo:</b> líder que busca apoio direto das massas.</li></ul>`)}
+${ac('Ditadura militar (1964 a 1985)',`<ul><li><b>AI-5 (1968):</b> fechou o Congresso, ampliou a censura e a repressão.</li><li><b>Milagre econômico:</b> crescimento com aumento da desigualdade.</li><li><b>1979:</b> Lei da Anistia.</li><li><b>1984:</b> Diretas Já.</li></ul>${pista('Música e charge da época costumam esconder crítica à censura.')}`,'Muito cobrado')}
+${ac('Constituição de 1988',`<p>Chamada de Constituição Cidadã. Ampliou direitos sociais, criou o SUS, reconheceu direitos indígenas e garantias a quilombolas.</p>`)}
+${ac('História geral',`<ul><li><b>Grécia:</b> democracia de Atenas, que excluía mulheres, estrangeiros e escravizados.</li><li><b>Revolução Francesa:</b> queda do absolutismo e direitos do cidadão.</li><li><b>Revolução Industrial:</b> fábrica, cidade, exploração operária.</li><li><b>Imperialismo:</b> partilha da África e da Ásia.</li><li><b>Nazifascismo:</b> autoritarismo, propaganda e perseguição.</li><li><b>Guerra Fria:</b> EUA x URSS, capitalismo x socialismo.</li></ul>`)}`},
+{id:'geografia',l:'Geografia',h:`
+${ac('População',`<ul><li><b>Envelhecimento:</b> menos nascimentos e vida mais longa.</li><li><b>Migração:</b> causada por trabalho, guerra e clima.</li><li><b>Xenofobia:</b> aversão a estrangeiros, tema frequente.</li></ul>`,'O mais cobrado')}
+${ac('Questão agrária',`<ul><li><b>Concentração fundiária:</b> muita terra na mão de poucos.</li><li><b>Agronegócio:</b> exporta, mecaniza e gera pouco emprego.</li><li><b>Agricultura familiar:</b> grande papel na comida do mercado interno.</li><li><b>Consequências:</b> conflitos no campo e êxodo rural.</li></ul>`,'Muito cobrado')}
+${ac('Meio ambiente',`<ul><li><b>Efeito estufa:</b> natural, mas intensificado pelos gases humanos.</li><li><b>Ilha de calor:</b> cidade asfaltada e sem verde fica mais quente.</li><li><b>Inversão térmica:</b> ar frio prende a poluição perto do chão.</li><li><b>Assoreamento:</b> sedimentos enchem o leito do rio.</li><li><b>Desenvolvimento sustentável:</b> usar sem esgotar para as próximas gerações.</li></ul>`,'Muito cobrado')}
+${ac('Globalização e geopolítica',`<ul><li><b>Globalização:</b> mais fluxo de produtos e informação, de forma desigual.</li><li><b>Multinacionais:</b> buscam mão de obra barata e incentivos.</li><li><b>Blocos:</b> Mercosul e União Europeia.</li><li><b>Divisão internacional do trabalho:</b> uns exportam tecnologia, outros matéria-prima.</li></ul>`)}
+${ac('Cidades',`<ul><li><b>Segregação socioespacial:</b> pobres empurrados para longe.</li><li><b>Gentrificação:</b> bairro valoriza e moradores antigos saem.</li><li><b>Conurbação:</b> cidades vizinhas que se juntam.</li><li><b>Mobilidade:</b> dependência do transporte por rodovias.</li></ul>`)}
+${ac('Energia e infraestrutura',`<ul><li>A matriz elétrica brasileira é muito baseada em hidrelétricas.</li><li>Hidrelétrica é renovável, mas alaga áreas e desloca comunidades.</li><li>O transporte de cargas depende demais de caminhões.</li></ul>`)}`},
+{id:'filosofia',l:'Filosofia',h:`
+<p>Ética e política dominam. Grave a ideia de cada pensador.</p>
+${ac('Sócrates',`<p>Questionar para chegar ao conhecimento. Reconhecer a própria ignorância é o começo.</p>`)}
+${ac('Platão',`<p><b>Mito da caverna:</b> os sentidos enganam; a razão leva ao verdadeiro conhecimento, o mundo das ideias.</p>`)}
+${ac('Aristóteles',`<p>Virtude é o <mark>meio-termo</mark> entre excesso e falta. O ser humano é um animal político.</p>`)}
+${ac('Maquiavel',`<p>Separa a política da moral. O governante precisa manter o poder e ser realista.</p>`)}
+${ac('Hobbes, Locke e Rousseau',`<table class="cerrado"><tbody><tr><td>Hobbes</td><td>Sem Estado, é guerra de todos contra todos. Precisamos de um governo forte.</td></tr><tr><td>Locke</td><td>Direitos naturais: vida, liberdade, propriedade. O povo pode derrubar quem os viola.</td></tr><tr><td>Rousseau</td><td>O ser humano nasce bom e a sociedade o corrompe. Defende a vontade geral.</td></tr></tbody></table>`,'Muito cobrado')}
+${ac('Descartes e os empiristas',`<p><b>Descartes:</b> a razão e a dúvida. “Penso, logo existo.”</p><p><b>Locke e Hume:</b> o conhecimento vem da experiência.</p>`)}
+${ac('Kant',`<p>Aja de um modo que possa virar regra para todos. Nunca use pessoas só como meio. Autonomia é usar a própria razão.</p>`,'Muito cobrado')}
+${ac('Nietzsche e Sartre',`<p><b>Nietzsche:</b> critica a moral tradicional.</p><p><b>Sartre:</b> a existência vem antes da essência; somos livres e responsáveis pelas escolhas.</p>`)}
+${ac('Arendt, Foucault, Adorno',`<ul><li><b>Arendt:</b> banalidade do mal, o mal cometido sem reflexão.</li><li><b>Foucault:</b> o poder se espalha em escolas, prisões e hospitais, por vigilância.</li><li><b>Adorno e Horkheimer:</b> indústria cultural transforma cultura em mercadoria.</li></ul>`)}`},
+{id:'sociologia',l:'Sociologia',h:`
+${ac('Os três clássicos',`<table class="cerrado"><tbody><tr><td>Durkheim</td><td>Fato social: regras externas que moldam o indivíduo. Anomia é a falta de normas.</td></tr><tr><td>Marx</td><td>Luta de classes. Mais-valia é o lucro tirado do trabalho não pago. Alienação é o trabalhador sem domínio do que produz.</td></tr><tr><td>Weber</td><td>Ação social com sentido. Dominação tradicional, carismática ou legal.</td></tr></tbody></table>`,'Base de muitas questões')}
+${ac('Cultura',`<ul><li><b>Etnocentrismo:</b> julgar outra cultura pela sua.</li><li><b>Relativismo cultural:</b> entender cada cultura em seu contexto.</li><li><b>Indústria cultural:</b> cultura produzida para vender.</li></ul>${pista('O Enem costuma condenar o etnocentrismo.')}`,'Muito cobrado')}
+${ac('Trabalho',`<ul><li><b>Taylorismo:</b> controle do tempo e das tarefas.</li><li><b>Fordismo:</b> linha de montagem e produção em massa.</li><li><b>Toyotismo:</b> produção flexível, sem grandes estoques.</li><li><b>Uberização:</b> trabalho por aplicativo, com pouca proteção.</li></ul>`,'Muito cobrado')}
+${ac('Cidadania e movimentos sociais',`<ul><li><b>Direitos:</b> civis (liberdade), políticos (voto) e sociais (saúde, educação).</li><li><b>Movimentos sociais:</b> grupos organizados por direitos, como negros, mulheres, indígenas, sem-terra e LGBTQIA+.</li><li><b>Democracia:</b> vai além do voto; envolve participação e direitos.</li></ul>`,'Muito cobrado')}
+${ac('Conceitos úteis',`<ul><li><b>Bourdieu:</b> violência simbólica, dominação que parece natural.</li><li><b>Bauman:</b> modernidade líquida, relações frágeis.</li><li><b>Racismo estrutural:</b> racismo presente no funcionamento normal da sociedade.</li></ul>`)}`}
+],
+
+linguagens:[
+{id:'como',l:'Como ler',h:`
+<ol>
+<li><b>Comando primeiro.</b> Saiba o que procurar.</li>
+<li><b>Veja a fonte no rodapé.</b> Jornal, poema, propaganda ou postagem.</li>
+<li><b>Responda só com o texto.</b> Sua opinião não importa aqui.</li>
+<li><b>Fuja do “além do texto”.</b> Alternativa que acrescenta coisas costuma estar errada.</li>
+</ol>
+<div class="caixa"><strong>Perguntas para qualquer texto</strong><ul><li>Quem fala?</li><li>Para quem?</li><li>Com que objetivo?</li></ul></div>
+<div class="caixa bom"><strong>Boa notícia</strong><p>Gramática tradicional quase não aparece sozinha. Saber ler bem resolve a maior parte da prova.</p></div>`},
+{id:'generos',l:'Gêneros',h:`
+<p>Pergunte: <mark>para que esse texto existe?</mark></p>
+<table class="cerrado"><thead><tr><th>Gênero</th><th>Objetivo</th></tr></thead><tbody>
+<tr><td>Notícia</td><td>Informar um fato atual</td></tr>
+<tr><td>Reportagem</td><td>Aprofundar um assunto</td></tr>
+<tr><td>Artigo de opinião</td><td>Defender um ponto de vista</td></tr>
+<tr><td>Propaganda ou campanha</td><td>Convencer alguém a agir</td></tr>
+<tr><td>Charge</td><td>Criticar um fato com humor</td></tr>
+<tr><td>Tirinha</td><td>Fazer humor, em quadrinhos</td></tr>
+<tr><td>Crônica</td><td>Comentar o dia a dia</td></tr>
+<tr><td>Resenha</td><td>Resumir e avaliar uma obra</td></tr>
+<tr><td>Postagem digital</td><td>Interagir em redes sociais</td></tr>
+</tbody></table>
+${pista('Em charge e propaganda, leia imagem e palavra juntas. A resposta costuma estar na relação entre elas.')}`},
+{id:'variacao',l:'Variação',h:`
+<p>A língua muda, e <mark>não existe fala “errada”</mark> no sentido do Enem. O que existe é adequação à situação.</p>
+<table class="cerrado"><thead><tr><th>Tipo</th><th>Muda conforme</th></tr></thead><tbody>
+<tr><td>Histórica</td><td>A época (“vossa mercê” virou “você”)</td></tr>
+<tr><td>Regional</td><td>O lugar (mandioca, aipim, macaxeira)</td></tr>
+<tr><td>Social</td><td>Grupo, classe, idade, profissão</td></tr>
+<tr><td>Situacional</td><td>Formal ou informal</td></tr>
+</tbody></table>
+<div class="caixa ruim"><strong>Pegadinha</strong><p>Desconfie da alternativa que diz que certa fala é “inferior” ou precisa ser “corrigida”. Geralmente é preconceito linguístico, e essa não é a resposta.</p></div>`},
+{id:'funcoes',l:'Funções',h:`
+<p>Pergunte: <mark>no que o texto foca?</mark></p>
+<table class="cerrado"><thead><tr><th>Função</th><th>Foco e pista</th></tr></thead><tbody>
+<tr><td>Referencial</td><td>Informação objetiva, como notícia</td></tr>
+<tr><td>Emotiva</td><td>Sentimentos, com “eu”</td></tr>
+<tr><td>Conativa</td><td>Convencer, com “compre”, “venha”, “você”</td></tr>
+<tr><td>Fática</td><td>Testar o contato: “alô?”, “entendeu?”</td></tr>
+<tr><td>Metalinguística</td><td>Fala do próprio código: poema sobre poema</td></tr>
+<tr><td>Poética</td><td>Beleza da forma: ritmo, som, jogo de palavras</td></tr>
+</tbody></table>`},
+{id:'figuras',l:'Figuras',h:`
+<table class="cerrado"><thead><tr><th>Figura</th><th>Exemplo</th></tr></thead><tbody>
+<tr><td>Metáfora</td><td>“Aquela menina é uma flor.”</td></tr>
+<tr><td>Comparação</td><td>“Forte como um touro.”</td></tr>
+<tr><td>Metonímia</td><td>“Li Machado” (a obra pelo autor).</td></tr>
+<tr><td>Ironia</td><td>“Que aluno pontual”, para quem atrasou.</td></tr>
+<tr><td>Hipérbole</td><td>“Já te disse um milhão de vezes.”</td></tr>
+<tr><td>Eufemismo</td><td>“Partiu” no lugar de “morreu”.</td></tr>
+<tr><td>Antítese</td><td>“Riso e choro” (opostos).</td></tr>
+<tr><td>Paradoxo</td><td>“Dor que não se sente” (ideia contraditória).</td></tr>
+<tr><td>Personificação</td><td>“O vento sussurrou.”</td></tr>
+</tbody></table>`},
+{id:'literatura',l:'Literatura',h:`
+${ac('Modernismo',`<p>Semana de Arte Moderna de 1922. Linguagem do cotidiano, liberdade na forma e valorização do Brasil.</p><ul><li><b>Oswald e Mário de Andrade:</b> ruptura e identidade nacional.</li><li><b>Drummond, Graciliano, Rachel de Queiroz, Jorge Amado:</b> crítica social e seca.</li><li><b>Clarice e Guimarães Rosa:</b> mundo interior e invenção da linguagem.</li></ul>`,'O mais cobrado')}
+${ac('Realismo',`<p>Machado de Assis e sua ironia. Crítica à elite e à hipocrisia.</p>`)}
+${ac('Romantismo',`<p>Emoção, idealização e nacionalismo. Indígena como herói em José de Alencar. Castro Alves e a poesia contra a escravidão.</p>`)}
+${ac('Vanguardas e arte',`<ul><li><b>Cubismo:</b> formas geométricas e vários ângulos.</li><li><b>Futurismo:</b> velocidade e máquina.</li><li><b>Dadaísmo:</b> deboche e rejeição da arte tradicional.</li><li><b>Surrealismo:</b> sonho e inconsciente.</li></ul>`)}
+${ac('Literatura contemporânea',`<p>Vozes negras, indígenas, femininas e periféricas, como Conceição Evaristo e Carolina Maria de Jesus.</p>`)}`},
+{id:'estrangeira',l:'Inglês e espanhol',h:`
+<ol><li>Leia o <b>comando em português</b> e as alternativas.</li><li>Procure <b>palavras parecidas</b> com o português e nomes próprios.</li><li>Veja título, imagem e fonte.</li><li>Não tente traduzir tudo. Procure só o trecho pedido.</li></ol>
+<table class="cerrado"><thead><tr><th>Parece</th><th>Mas significa</th></tr></thead><tbody>
+<tr><td>Actually (ing.)</td><td>Na verdade</td></tr>
+<tr><td>Pretend (ing.)</td><td>Fingir</td></tr>
+<tr><td>Push (ing.)</td><td>Empurrar</td></tr>
+<tr><td>Parents (ing.)</td><td>Pais</td></tr>
+<tr><td>Embarazada (esp.)</td><td>Grávida</td></tr>
+<tr><td>Oficina (esp.)</td><td>Escritório</td></tr>
+<tr><td>Borracha (esp.)</td><td>Bêbada</td></tr>
+<tr><td>Exquisito (esp.)</td><td>Delicioso, refinado</td></tr>
+</tbody></table>`},
+{id:'corpo',l:'Corpo e tecnologia',h:`
+<ul>
+<li><b>Práticas corporais:</b> esporte, dança, lutas e capoeira como cultura.</li>
+<li><b>Padrão de beleza:</b> a prova costuma criticar a pressão da mídia.</li>
+<li><b>Inclusão:</b> acesso a esporte e lazer como direito.</li>
+<li><b>Tecnologia:</b> como a internet muda a escrita e a forma de se relacionar.</li>
+<li><b>Fake news:</b> checar a fonte e reconhecer manipulação.</li>
+</ul>`}
+]};
+
+/* Treino */
+const QUIZ=[
+{a:'Sociologia',q:'Um entregador de aplicativo trabalha muitas horas, sem férias remuneradas e arca com os custos da moto. Essa situação é um exemplo de:',o:['Fordismo clássico','Precarização do trabalho','Pleno emprego','Estabilidade sindical','Corporativismo estatal'],c:1,w:'A uberização transfere riscos e custos para o trabalhador e reduz sua proteção.'},
+{a:'Filosofia',q:'Para esse pensador, sem um Estado forte, os homens viveriam em guerra de todos contra todos. Trata-se de:',o:['Rousseau','Aristóteles','Hobbes','Descartes','Sócrates'],c:2,w:'Em “Leviatã”, Hobbes defende um poder forte para garantir a paz.'},
+{a:'História',q:'A Lei de Terras de 1850 ajudou a manter a desigualdade porque:',o:['Distribuiu terras a ex-escravizados','Proibiu latifúndios','Determinou que a terra fosse obtida por compra','Tornou o campo propriedade indígena','Estatizou as fazendas de café'],c:2,w:'Comprar exigia dinheiro, o que afastou pobres e futuros libertos da posse da terra.'},
+{a:'Geografia',q:'Uma área muito asfaltada e com poucas árvores registra temperaturas maiores que seu entorno. O fenômeno é:',o:['Ilha de calor','Inversão térmica','Chuva ácida','Assoreamento','Efeito orográfico'],c:0,w:'Concreto e asfalto retêm calor, e a falta de vegetação reduz o resfriamento.'},
+{a:'Linguagens',q:'Uma música popular usa “nóis vai” para representar a fala de uma comunidade. No Enem, isso costuma ser visto como:',o:['Erro que deve ser eliminado','Falta de inteligência do autor','Variação linguística que expressa identidade','Regra da norma culta','Prova de que a língua não muda'],c:2,w:'O Enem valoriza as variedades e combate o preconceito linguístico.'},
+{a:'Linguagens',q:'“Venha para nossa campanha. Vacine seu filho!” A função de linguagem predominante é a:',o:['Metalinguística','Conativa','Fática','Referencial','Poética'],c:1,w:'O verbo no imperativo tenta convencer o leitor a agir.'},
+{a:'Redação',q:'Qual proposta está mais completa?',o:['A sociedade deve mudar.','O governo precisa fazer algo.','As pessoas devem se conscientizar sobre o problema.','O Ministério da Saúde deve criar campanhas nas escolas, por meio de equipes locais, a fim de reduzir o preconceito.','É triste que isso ainda aconteça.'],c:3,w:'Ela tem agente, ação, meio e finalidade. Basta acrescentar um detalhe para fechar os 5 itens.'},
+{a:'Redação',q:'Qual conectivo indica oposição?',o:['Portanto','Além disso','Porque','No entanto','A fim de'],c:3,w:'“No entanto” marca contraste. Os outros indicam conclusão, soma, causa e finalidade.'}
+];
+
+/* Render */
+for(const g in CONTEUDO){
+  const chips=document.querySelector(`[data-grupo=${g}]`),pain=document.querySelector(`[data-paineis=${g}]`);
+  CONTEUDO[g].forEach((p,i)=>{
+    chips.insertAdjacentHTML('beforeend',`<button class="chip" role="tab" data-g="${g}" data-p="${p.id}" aria-selected="${i==0}">${p.l}</button>`);
+    pain.insertAdjacentHTML('beforeend',`<div class="painel" id="${g}-${p.id}" ${i?'hidden':''}>${p.h}</div>`);
+  });
+}
+function abrirPainel(g,p){
+  document.querySelectorAll(`[data-g=${g}]`).forEach(c=>{const on=c.dataset.p==p;c.setAttribute('aria-selected',on);if(on)c.scrollIntoView({inline:'center',block:'nearest'})});
+  document.querySelectorAll(`[data-paineis=${g}] .painel`).forEach(e=>e.hidden=e.id!=`${g}-${p}`);
+}
+function ir(v,p){
+  document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==v));
+  document.querySelectorAll('nav.gab button').forEach(b=>b.dataset.v==v?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+  if(p)abrirPainel(v,p);
+  window.scrollTo(0,0);
+  try{history.replaceState(null,'','#'+v)}catch(e){}
+}
+document.addEventListener('click',e=>{
+  const n=e.target.closest('nav.gab button');if(n)return ir(n.dataset.v);
+  const c=e.target.closest('.chip');if(c){abrirPainel(c.dataset.g,c.dataset.p);window.scrollTo(0,0);return}
+  const a=e.target.closest('[data-go]');if(a){const[v,p]=a.dataset.go.split(':');ir(v,p)}
+});
+const h=location.hash.slice(1).split('/');
+if(document.getElementById(h[0])&&document.getElementById(h[0]).classList.contains('view'))ir(h[0],h[1]);
+
+/* Relógio */
+const PORTAO1=Date.UTC(2026,10,8,16),FIM1=Date.UTC(2026,10,8,22),PORTAO2=Date.UTC(2026,10,15,16),FIM2=Date.UTC(2026,10,15,21,30);
+const $t=document.getElementById('capaTit'),$r=document.getElementById('relogio'),$s=document.getElementById('capaSub'),$a=document.getElementById('avisoCel');
+const dd=n=>String(n).padStart(2,'0');
+function contar(ms){const s=Math.floor(ms/1000);return dd(Math.floor(s/3600))+':'+dd(Math.floor(s/60)%60)+':'+dd(s%60)}
+function tic(){
+  const a=Date.now();
+  if(a<PORTAO1){$t.textContent='Os portões fecham em';$r.textContent=contar(PORTAO1-a);$s.textContent='13h no horário de Brasília. Se seu estado tem outro fuso, faça a conta.'}
+  else if(a<FIM1){$t.textContent='Prova em andamento';$r.textContent=contar(FIM1-a);$s.textContent='Tempo até o fim do 1º dia, às 19h de Brasília.';$a.hidden=true}
+  else if(a<PORTAO2){const d=Math.ceil((PORTAO2-a)/864e5);$t.textContent='2º dia, 15 de novembro';$r.textContent=d==1?'Falta 1 dia':'Faltam '+d+' dias';$s.textContent='Natureza e Matemática. Portões fecham às 13h de Brasília.';$r.style.fontSize='clamp(44px,14vw,72px)';$a.hidden=true}
+  else if(a<FIM2){$t.textContent='2º dia do Enem';$r.textContent=contar(Math.max(PORTAO2-a,0)||FIM2-a);$s.textContent='Boa prova.';$a.hidden=true}
+  else{$t.textContent='O Enem 2026 acabou';$r.textContent='Parabéns';$s.textContent='Você foi até o fim.';$a.hidden=true}
+}
+tic();setInterval(tic,1000);
+
+/* Checklist */
+const ITENS=['Documento oficial com foto, original ou digital aceito no edital','Caneta preta de tubo transparente, mais de uma','Cartão de Confirmação, com endereço do local','Água e lanche leve','Sair com folga: portão fecha às 13h','Celular desligado na hora de entrar'];
+let salvo={};try{salvo=JSON.parse(localStorage.getItem('meSalvaMala')||'{}')}catch(e){}
+document.getElementById('malinha').innerHTML=ITENS.map((t,i)=>`<label class="check"><input type="checkbox" data-i="${i}" ${salvo[i]?'checked':''}><span class="oval" aria-hidden="true"></span><span>${t}</span></label>`).join('');
+document.getElementById('malinha').addEventListener('change',e=>{salvo[e.target.dataset.i]=e.target.checked;try{localStorage.setItem('meSalvaMala',JSON.stringify(salvo))}catch(er){}});
+
+/* Monte sua redação */
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function gerar(){
+  const v={};document.querySelectorAll('[data-m]').forEach(e=>v[e.dataset.m]=e.value.trim());
+  const f=(k,p)=>v[k]?esc(v[k]):`<span class="lacuna">[${p}]</span>`;
+  document.getElementById('saida').innerHTML=
+  par('Introdução','1 a 6',`${esc(v.rep)} No entanto, no Brasil, ${f('tema','tema')} mostra que essa realidade ainda está distante de muitos cidadãos. Esse cenário se mantém por dois motivos principais: ${f('c1','causa 1')} e ${f('c2','causa 2')}.`)+
+  par('Desenvolvimento 1','7 a 14',`Em primeira análise, é preciso destacar ${f('c1','causa 1')}. Isso ocorre porque ${f('e1','explicação')}. Como consequência, ${f('r1','o que provoca')}.`)+
+  par('Desenvolvimento 2','15 a 22',`Além disso, ${f('c2','causa 2')} agrava esse quadro, uma vez que ${f('e2','explicação')}. Dessa forma, ${f('r2','o que provoca')}.`)+
+  par('Conclusão','23 a 30',`Portanto, medidas são necessárias para enfrentar ${f('tema','tema')}. Para isso, ${f('ag','quem')} deve ${f('ac','fazer o quê')}, por meio de ${f('me','como')}, a fim de ${f('fi','para quê')}. Essa medida deve ${f('de','detalhe')}.`);
+}
+document.getElementById('redacao').addEventListener('input',e=>{if(e.target.dataset.m)gerar()});
+gerar();
+
+/* Quiz */
+let feitas=0,acertos=0;
+const L='ABCDE';
+function montarQuiz(){
+  feitas=acertos=0;placar();
+  document.getElementById('quiz').innerHTML=QUIZ.map((x,i)=>`<div class="q" data-q="${i}"><div class="area">${x.a}</div><p>${x.q}</p>${x.o.map((t,j)=>`<button class="alt" data-j="${j}"><span class="oval" aria-hidden="true">${L[j]}</span><span>${t}</span></button>`).join('')}<div class="exp"></div></div>`).join('')+'<button class="botao" id="refazer">Refazer treino</button>';
+}
+function placar(){document.getElementById('placar').textContent=feitas==QUIZ.length?`Fim: você acertou ${acertos} de ${QUIZ.length}`:`${feitas} de ${QUIZ.length} respondidas, ${acertos} ${acertos==1?'certa':'certas'}`}
+document.getElementById('quiz').addEventListener('click',e=>{
+  if(e.target.id=='refazer'){montarQuiz();window.scrollTo(0,0);return}
+  const b=e.target.closest('.alt');if(!b)return;
+  const box=b.closest('.q'),x=QUIZ[box.dataset.q],j=+b.dataset.j;
+  box.querySelectorAll('.alt').forEach(a=>{a.disabled=true;if(+a.dataset.j==x.c)a.classList.add('certa')});
+  if(j!=x.c)b.classList.add('errada');else acertos++;
+  feitas++;placar();
+  box.querySelector('.exp').innerHTML=`<div class="caixa ${j==x.c?'bom':'ruim'}"><strong>${j==x.c?'Acertou':'A certa é a '+L[x.c]}</strong><p>${x.w}</p></div>`;
+});
+montarQuiz();
+</script>
+
+</body>
+</html>
